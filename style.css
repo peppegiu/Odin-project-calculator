@@ -9,7 +9,7 @@ body {
 
 
 main {
-    height: 65vh;
+    height: 80vh;
     width: 35vw; 
     display: flex;
     justify-content: center;
@@ -45,4 +45,16 @@ button {
 .calculator .buttons {
     display: flex;
     flex-direction: column;
+}
+
+.calculator .display {
+    height: 20%;
+}
+
+.calculator .display #display {
+    background: none;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    font-size: 100px;
 }
