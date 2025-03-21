@@ -11,7 +11,24 @@ function divide(a, b) {
     return a * b;
 }
 function operate(operator, a, b) {
-    
+    if (typeof a !== "number" && typeof b !== "number") {
+        a = Number(a);
+        b = Number(b);
+    }
+
+
+
+    switch(operator) {
+        case "+":
+            return add(a, b);
+        case "-":
+            return subtract(a, b);
+        case "*":
+            return multiply(a, b);
+
+        case "/":
+            return divide(a, b);
+    }
 }
 
 
@@ -20,7 +37,7 @@ let digits = document.querySelectorAll(".digit");
 const display = document.querySelector("#display");
 const clearDisplay = document.querySelector(".clear");
 let operators = document.querySelectorAll(".operator");
-
+let equal = document.querySelector(".equal")
 
 operators.forEach((symbol) => {
     symbol.addEventListener("click", () => {
@@ -29,9 +46,10 @@ operators.forEach((symbol) => {
         }    
         else {
             firstNumber = display.value;
+            clear()
             operator = symbol.value;
         }
-        
+
     })
 })
 
@@ -42,4 +60,20 @@ digits.forEach((digit) => {
     })
 })
 
-clearDisplay.addEventListener("click", () => display.value = "");
+clearDisplay.addEventListener("click", clear);
+
+function clear() {
+    return display.value = "";
+}
+
+
+equal.addEventListener("click", () => {
+    if (display.value == null || display.value == undefined) {
+        secondNumber = firstNumber;
+    }
+    else {
+        secondNumber = display.value;
+    }
+    let result = operate(operator, firstNumber, secondNumber);
+    display.value = result
+})

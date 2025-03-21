@@ -1,0 +1,4 @@
+when user click a number digit
+It stores the firstNumber variable
+Select the operator
+and stores the secondNumber
