@@ -8,7 +8,7 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    return a * b;
+    return a / b;
 }
 function operate(operator, a, b) {
     if (typeof a !== "number" && typeof b !== "number") {
