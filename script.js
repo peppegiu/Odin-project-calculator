@@ -34,19 +34,35 @@ function operate(operator, a, b) {
 
 let firstNumber = 0
 let operator, secondNumber, current, result1;
-let digits = document.querySelectorAll(".digit");
+const digits = document.querySelectorAll(".digit");
 const display = document.querySelector("#display");
 const clearDisplay = document.querySelector(".clear");
-let operators = document.querySelectorAll(".operator");
-let equal = document.querySelector(".equal")
+const operators = document.querySelectorAll(".operator");
+const equal = document.querySelector(".equal")
 let evaluated = false;
 let Selected, isSelected;
+
 
 
 for (let i = 0; i < digits.length; i++) {
     digits[i].addEventListener("click", () => {
         display.value += digits[i].textContent;
+        if (isSelected) {
+            secondNumber += display.value
+            operators.forEach((operator) => operator.disabled = true)
+        }
     })
 }
 
+function refresh() {
+    display.value = "";
+}
 
+function clear() {
+    refresh();
+    firstNumber = 0;
+    secondNumber = 0;
+    isSelected = 0;
+}
+
+clearDisplay.addEventListener("click", clear)
