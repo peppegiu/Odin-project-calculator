@@ -14,7 +14,7 @@ function divide(a, b) {
     return a / b;
 }
 function operate(operator, a, b) {
-    if (typeof a !== "number" && typeof b !== "number") {
+    if (typeof a !== "number" || typeof b !== "number") {
         a = Number(a);
         b = Number(b);
     }
