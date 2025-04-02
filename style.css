@@ -18,9 +18,9 @@ main {
 }
 
 .row {
-    margin-top: 1.2em;
+    margin-top: 1.0em;
     display: flex;
-    gap: 15px;
+    gap: 7px;
 }
 
 .calculator {
@@ -37,7 +37,7 @@ button {
     border-radius: 5px;
     font-family: Inter;
     font-weight: 200;
-    margin-left: 5px;
+    margin-left: 1px;
     padding: 25px;
     font-size: 1.5rem;
 }
@@ -57,4 +57,17 @@ button {
     height: 100%;
     border-style: none;
     font-size: 100px;
+    text-align: right;
+}
+
+.zero {
+    flex-grow: 1;
+}
+
+.digit {
+    flex: 1;
+}
+
+.first-row button {
+    flex: 1;
 }
