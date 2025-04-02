@@ -83,9 +83,7 @@ for (let i = 0; i < digits.length; i++) {
             secondNumber = display.value;
             console.log(secondNumber)
             if (operators[0].disabled) {
-                for (let i = 0; i < operators.length; i++) {
-                    operators[i].disabled = false;
-                }
+                setButtons(operators, false);
             }
             if (dot.disabled) {
                 enableDot();
@@ -98,9 +96,7 @@ for (let i = 0; i< operators.length; i++) {
     operators[i].addEventListener("click", () => {    
         currentOperator = operators[i].value;   
         if (!operators[0].disabled) {
-            for (let i = 0; i < operators.length; i++) {
-                operators[i].disabled = true;
-            }
+            setButtons(operators, true);
         }
         if (isSelected && !secondNumber == 0) {
             let result = evaluate();
@@ -137,14 +133,10 @@ function clear() {
     operator = undefined;
     currentOperator = undefined;
     if (operators[0].disabled) {
-        for (let i = 0; i < operators.length; i++) {
-            operators[i].disabled = false;
-        }
+        setButtons(operators, false)
     }
     if (handler1[2].disabled) {
-        for (let i = 0; i < handler1.length; i++) {
-            handler1[i].disabled = false;
-        }
+        setButtons(handler1, false)
     }
     if (dot.disabled) {
         enableDot();
@@ -168,10 +160,7 @@ equal.addEventListener("click", () => {
 })
 
 function errorHandler() {
-    
-    for (let i = 0; i < handler1.length; i++) {
-        handler1[i].disabled = true;
-    }
+    setButtons(handler1, true);
     display.value = "ERROR";
     HandlerIsOn = true;
     return "ERROR";
@@ -181,7 +170,6 @@ function errorHandler() {
 
 function addDot() {
     if (!display.value.includes(".")) {
-
         display.value += ".";
         dot.disabled = true;
         return null;
@@ -192,3 +180,8 @@ function enableDot() {
     dot.disabled = false;
 }
 
+function setButtons(node, boolean) {
+    for (let i = 0; i < node.length; i++) {
+        node[i].disabled = boolean;
+    }
+}
