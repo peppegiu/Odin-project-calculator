@@ -40,6 +40,16 @@ function operate(operator, a, b) {
     }
 }
 
+function evaluate() {
+    let result = operate(pastOperator, firstNumber, secondNumber)
+    if (result === "ERROR") {
+        return "ERROR"
+    }
+    else {
+        return Math.round(result * 100) / 100;
+    }
+}
+
 
 let firstNumber = 0;
 let secondNumber;
@@ -93,7 +103,7 @@ for (let i = 0; i< operators.length; i++) {
             }
         }
         if (isSelected && !secondNumber == 0) {
-            let result = Math.round(operate(pastOperator, firstNumber, secondNumber) * 100) / 100;
+            let result = evaluate();
         
             refresh();
             display.value = result;
@@ -145,8 +155,15 @@ function clear() {
 clearDisplay.addEventListener("click", clear)
 
 equal.addEventListener("click", () => {
-    if (firstNumber && secondNumber) {
-        display.value = operate(operator, firstNumber, secondNumber)
+    if ((currentOperator || pastOperator) && secondNumber) {
+        let result = evaluate();
+        if (result === "ERROR") {
+            return errorHandler();
+        }
+        else {
+            isOff = false;
+            display.value = result;
+        }
     }
 })
 
@@ -155,6 +172,7 @@ function errorHandler() {
     for (let i = 0; i < handler1.length; i++) {
         handler1[i].disabled = true;
     }
+    display.value = "ERROR";
     HandlerIsOn = true;
     return "ERROR";
 }
@@ -173,3 +191,4 @@ function addDot() {
 function enableDot() {
     dot.disabled = false;
 }
+
