@@ -54,7 +54,9 @@ let selected;
 let isSelected = false;
 let isOff = true;
 let HandlerIsOn = false;
-let handler1 = document.querySelectorAll(".btn");
+const handler1 = document.querySelectorAll(".btn");
+const dot = document.querySelector(".dot");
+dot.addEventListener("click", addDot)
 
 
 for (let i = 0; i < digits.length; i++) {
@@ -75,6 +77,9 @@ for (let i = 0; i < digits.length; i++) {
                     operators[i].disabled = false;
                 }
             }
+            if (dot.disabled) {
+                enableDot();
+            }
         }
     })
 }
@@ -88,7 +93,8 @@ for (let i = 0; i< operators.length; i++) {
             }
         }
         if (isSelected && !secondNumber == 0) {
-            let result = operate(pastOperator, firstNumber, secondNumber);
+            let result = Math.round(operate(pastOperator, firstNumber, secondNumber) * 100) / 100;
+        
             refresh();
             display.value = result;
                 firstNumber = result;
@@ -130,6 +136,9 @@ function clear() {
             handler1[i].disabled = false;
         }
     }
+    if (dot.disabled) {
+        enableDot();
+    }
 
 }
 
@@ -146,6 +155,21 @@ function errorHandler() {
     for (let i = 0; i < handler1.length; i++) {
         handler1[i].disabled = true;
     }
-    HandlerIsOn = true
+    HandlerIsOn = true;
     return "ERROR";
+}
+
+
+
+function addDot() {
+    if (!display.value.includes(".")) {
+
+        display.value += ".";
+        dot.disabled = true;
+        return null;
+    }
+}
+
+function enableDot() {
+    dot.disabled = false;
 }
