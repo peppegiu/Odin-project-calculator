@@ -7,3 +7,5 @@ It's a project made for the odin-project challenge, it uses flex-box for it's de
 ## Visual
 
 ![alt text](./images/image.png);
+
+**View at https://peppegiu.github.io/Odin-project-calculator/**
